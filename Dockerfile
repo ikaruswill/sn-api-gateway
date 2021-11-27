@@ -1,9 +1,9 @@
 # Build stage
-FROM node:15.11.0-alpine as build
+FROM node:16.11.1-alpine3.14 as build
 
 RUN apk add --update --no-cache \
     alpine-sdk \
-    python
+    python3
 
 WORKDIR /var/www
 
@@ -18,7 +18,7 @@ RUN yarn build
 RUN npm prune --production
 
 # Final image
-FROM node:15.11.0-alpine
+FROM node:16.11.1-alpine3.14
 
 ARG UID=1001
 ARG GID=1001
